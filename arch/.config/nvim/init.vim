@@ -1,4 +1,4 @@
-" Instação de extensões
+" Instação de extensões 
 call plug#begin()
   " Aparência
   Plug 'elvessousa/sobrio'
@@ -24,6 +24,17 @@ call plug#begin()
 
   " Git
   Plug 'airblade/vim-gitgutter'
+  
+
+  " Configuração notebook
+  Plug 'karoliskoncevicius/vim-sendtowindow'
+
+  Plug 'rhysd/reply.vim', { 'on': ['Repl', 'ReplAuto'] }
+
+  Plug 'tpope/vim-repeat'
+  Plug 'pappasam/nvim-repl'
+
+  Plug 'luk400/vim-jukit'
 
 call plug#end()
 
@@ -111,6 +122,29 @@ augroup auto_commands
 augroup END
 
 
+" " Remap divide a navegação para apenas CTRL + hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+
+
+" Torne o ajuste de tamanhos divididos um pouco mais amigável
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize -3<CR>
+noremap <silent> <C-Down> :resize +3<CR>
+
+
+
+" Altere 2 janelas divididas de vertical para horizontal ou horizontal para vertical
+map <Leader>th <C-w>t<C-w>H
+map <Leader>tk <C-w>t<C-w>K
+
+" Atalhos para o REPL
+nnoremap <leader>e :ReplToggle<CR>
+nnoremap <leader><tab> :ReplSend<CR>
 
 " ################
 " ### Optições ###
@@ -147,33 +181,3 @@ if $TERM !=? 'xterm-256color'
 endif
 
 
-" " Remap divide a navegação para apenas CTRL + hjkl
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-
-
-" Torne o ajuste de tamanhos divididos um pouco mais amigável
-noremap <silent> <C-Left> :vertical resize +3<CR>
-noremap <silent> <C-Right> :vertical resize -3<CR>
-noremap <silent> <C-Up> :resize -3<CR>
-noremap <silent> <C-Down> :resize +3<CR>
-
-
-
-" Altere 2 janelas divididas de vertical para horizontal ou horizontal para vertical
-map <Leader>th <C-w>t<C-w>H
-map <Leader>tk <C-w>t<C-w>K
-
-
-" Configuração notebook
-Plug 'karoliskoncevicius/vim-sendtowindow'
-
-Plug 'rhysd/reply.vim', { 'on': ['Repl', 'ReplAuto'] }
-
-Plug 'tpope/vim-repeat'
-Plug 'pappasam/nvim-repl'
-
-Plug 'luk400/vim-jukit'
