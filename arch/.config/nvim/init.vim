@@ -116,10 +116,10 @@ nnoremap <C-s> :w!<CR>
 " ### Commands automáticos   ###
 " ##############################
 " Auto Commands
-augroup auto_commands
-	autocmd BufWrite *.py call CocAction('format')
-	autocmd FileType scss setlocal iskeyword+=@-@
-augroup END
+"augroup auto_commands
+"	autocmd BufWrite *.py call CocAction('format')
+"	autocmd FileType scss setlocal iskeyword+=@-@
+"augroup END
 
 
 " " Remap divide a navegação para apenas CTRL + hjkl
@@ -145,7 +145,7 @@ map <Leader>tk <C-w>t<C-w>K
 " Atalhos para o REPL
 nnoremap <leader>e :ReplToggle<CR>
 nnoremap <leader><tab> :ReplSend<CR>
-
+nnoremap <leader>q : ReplClose<CR>
 " ################
 " ### Optições ###
 " ################
@@ -180,4 +180,21 @@ if $TERM !=? 'xterm-256color'
 	set termguicolors
 endif
 
+" Configurações do CoC.nvim
 
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Fim das configurações do CoC.nvim
